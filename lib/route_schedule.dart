@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:city_connect/data/routes.dart';
 
 class RouteSchedule extends StatelessWidget {
-  RouteSchedule(this.id, {super.key});
+  const RouteSchedule(this.id, {super.key});
   final int id;
-  final timings = routes[0].timings;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +33,7 @@ class RouteSchedule extends StatelessWidget {
                   ),
                 ],
                 rows: <DataRow>[
-                  ...timings
+                  ...routes.firstWhere((element) => element.id==id).timings
                       .map(
                         (e) => DataRow(
                           cells: <DataCell>[
