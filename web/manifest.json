@@ -1,6 +1,6 @@
 {
-    "name": "city_connect",
-    "short_name": "city_connect",
+    "name": "City Connect",
+    "short_name": "City Connect",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
