@@ -66,7 +66,9 @@ class RouteSchedule extends StatelessWidget {
       // Format the times back to hh:mm format
       // beforeTimeString = DateFormat.jm().format(beforeTime);
       afterTimeString = DateFormat.jm().format(afterTime);
-    } else {}
+    } else {
+      afterTimeString = "NOT AVAILABLE";
+    }
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -101,12 +103,10 @@ class RouteSchedule extends StatelessWidget {
                   ))
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Expanded(
+         Expanded(
               child: SizedBox(
-                width: 300, // Set the desired width
-                height: 350, // Set the desired height
+                width: 200, // Set the desired width
+                height: 200, // Set the desired height
                 child: SingleChildScrollView(
                   scrollDirection: Axis.vertical,
                   child: DataTable(
@@ -147,7 +147,6 @@ class RouteSchedule extends StatelessWidget {
                 ),
               ),
             ),
-          ),
         ]),
       ),
     );
