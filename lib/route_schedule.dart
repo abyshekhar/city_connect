@@ -54,7 +54,8 @@ class RouteSchedule extends StatelessWidget {
 
     // Sort the list of DateTime objects
     dateTimeList.sort((a, b) => a.compareTo(b));
-
+    String first = DateFormat('hh:mm a').format(dateTimeList.first);
+    String last = DateFormat('hh:mm a').format(dateTimeList.last);
     // Find the index of the target time in the sorted list
     int index = dateTimeList.indexWhere((time) => time.isAfter(targetDateTime));
 
@@ -67,7 +68,7 @@ class RouteSchedule extends StatelessWidget {
       // beforeTimeString = DateFormat.jm().format(beforeTime);
       afterTimeString = DateFormat.jm().format(afterTime);
     } else {
-      afterTimeString = "NOT AVAILABLE";
+      afterTimeString = "$first(Morning)";
     }
     return Scaffold(
       appBar: AppBar(
@@ -86,67 +87,109 @@ class RouteSchedule extends StatelessWidget {
                 )),
           ),
           const Clock(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text("Next Bus : ",
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              const Text("First Bus : ",
                   style: TextStyle(
                     color: Colors.grey,
                     fontWeight: FontWeight.normal,
                     fontSize: 20,
                   )),
-              Text(afterTimeString,
+              Text(first,
                   style: const TextStyle(
-                    color: Colors.green,
+                    color: Colors.brown,
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
                   ))
-            ],
+            ]),
           ),
-         Expanded(
-              child: SizedBox(
-                width: 200, // Set the desired width
-                height: 200, // Set the desired height
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
-                  child: DataTable(
-                    horizontalMargin: 10,
-                    columns: const <DataColumn>[
-                      DataColumn(
-                        label: Expanded(
-                          child: Text(
-                            'Time',
-                            style: TextStyle(
-                                fontStyle: FontStyle.italic,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                                color: Colors.green),
-                          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text("Last Bus : ",
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontWeight: FontWeight.normal,
+                      fontSize: 20,
+                    )),
+                Text(last,
+                    style: const TextStyle(
+                      color: Colors.redAccent,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ))
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text("Next Bus : ",
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontWeight: FontWeight.normal,
+                      fontSize: 20,
+                    )),
+                Text(afterTimeString,
+                    style: const TextStyle(
+                      color: Colors.green,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ))
+              ],
+            ),
+          ),
+          Expanded(
+            child: SizedBox(
+              width: 200, // Set the desired width
+              height: 200, // Set the desired height
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: DataTable(
+                  horizontalMargin: 10,
+                  columns: const <DataColumn>[
+                    DataColumn(
+                      label: Expanded(
+                        child: Text(
+                          'Complete Schedule',
+                          style: TextStyle(
+                              fontStyle: FontStyle.italic,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              color: Colors.green),
                         ),
                       ),
-                    ],
-                    rows: <DataRow>[
-                      ...routes
-                          .firstWhere((element) => element.id == id)
-                          .timings
-                          .map(
-                            (e) => DataRow(
-                              cells: <DataCell>[
-                                DataCell(Text(
-                                    DateFormat.jm().format(parseTime(e)).toString(),
-                                    style: const TextStyle(
-                                        fontStyle: FontStyle.normal,
-                                        color: Colors.green,
-                                        fontSize: 20))),
-                              ],
-                            ),
-                          )
-                          .toList()
-                    ],
-                  ),
+                    ),
+                  ],
+                  rows: <DataRow>[
+                    ...routes
+                        .firstWhere((element) => element.id == id)
+                        .timings
+                        .map(
+                          (e) => DataRow(
+                            cells: <DataCell>[
+                              DataCell(Text(
+                                  DateFormat.jm()
+                                      .format(parseTime(e))
+                                      .toString(),
+                                  style: const TextStyle(
+                                      fontStyle: FontStyle.normal,
+                                      color: Colors.green,
+                                      fontSize: 20))),
+                            ],
+                          ),
+                        )
+                        .toList()
+                  ],
                 ),
               ),
             ),
+          ),
         ]),
       ),
     );
