@@ -38,18 +38,24 @@ class _ClockState extends State<Clock> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text('Current Time  '),
-              Text(
-                formattedTime,
-              ),
+              const Text('Current Time: ',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontWeight: FontWeight.normal,
+                    fontSize: 30,
+                  )),
+              Text(formattedTime,
+                  style: const TextStyle(
+                    color: Colors.green,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30,
+                  )),
             ],
           ),
         ),
         const Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-
-          ],
+          children: [],
         )
       ],
     );

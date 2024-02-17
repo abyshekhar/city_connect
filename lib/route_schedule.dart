@@ -6,13 +6,15 @@ import 'package:intl/intl.dart';
 bool isHoliday = false;
 
 class RouteSchedule extends StatelessWidget {
- const RouteSchedule(this.id, {super.key});
+  const RouteSchedule(this.id, {super.key});
   final int id;
 
   @override
   Widget build(BuildContext context) {
-    String beforeTimeString = "";
+    // String beforeTimeString = "";
     String afterTimeString = " ";
+    String displayText =
+        routes.firstWhere((element) => element.id == id).displayText;
     // Get the current date
     DateTime now = DateTime.now();
 
@@ -58,11 +60,11 @@ class RouteSchedule extends StatelessWidget {
 
     if (index != -1) {
       // Retrieve the time just before and after the target time
-      DateTime beforeTime = dateTimeList[index - 1];
+      // DateTime beforeTime = dateTimeList[index - 1];
       DateTime afterTime = dateTimeList[index];
 
       // Format the times back to hh:mm format
-      beforeTimeString = DateFormat.jm().format(beforeTime);
+      // beforeTimeString = DateFormat.jm().format(beforeTime);
       afterTimeString = DateFormat.jm().format(afterTime);
     } else {}
     return Scaffold(
@@ -72,37 +74,77 @@ class RouteSchedule extends StatelessWidget {
       ),
       body: Center(
         child: Column(children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(displayText,
+                style: TextStyle(
+                  color: Colors.green[900],
+                  fontWeight: FontWeight.bold,
+                  fontSize: 40,
+                )),
+          ),
           const Clock(),
-          Text("Last Bus was scheduled at $beforeTimeString"),
-          Text("Next Bus is scheduled at $afterTimeString"),
-          Expanded(
-            child: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: DataTable(
-                horizontalMargin: 10,
-                columns: const <DataColumn>[
-                  DataColumn(
-                    label: Expanded(
-                      child: Text(
-                        'Time',
-                        style: TextStyle(fontStyle: FontStyle.italic),
-                      ),
-                    ),
-                  ),
-                ],
-                rows: <DataRow>[
-                  ...routes
-                      .firstWhere((element) => element.id == id)
-                      .timings
-                      .map(
-                        (e) => DataRow(
-                          cells: <DataCell>[
-                            DataCell(Text(DateFormat.jm().format(parseTime(e)).toString())),
-                          ],
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text("Next Bus : ",
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontWeight: FontWeight.normal,
+                    fontSize: 30,
+                  )),
+              Text(afterTimeString,
+                  style: const TextStyle(
+                    color: Colors.green,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30,
+                  ))
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Expanded(
+              child: SizedBox(
+                width: 300, // Set the desired width
+                height: 350, // Set the desired height
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: DataTable(
+                    horizontalMargin: 10,
+                    columns: const <DataColumn>[
+                      DataColumn(
+                        label: Expanded(
+                          child: Text(
+                            'Time',
+                            style: TextStyle(
+                                fontStyle: FontStyle.italic,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                                color: Colors.green),
+                          ),
                         ),
-                      )
-                      .toList()
-                ],
+                      ),
+                    ],
+                    rows: <DataRow>[
+                      ...routes
+                          .firstWhere((element) => element.id == id)
+                          .timings
+                          .map(
+                            (e) => DataRow(
+                              cells: <DataCell>[
+                                DataCell(Text(
+                                    DateFormat.jm().format(parseTime(e)).toString(),
+                                    style: const TextStyle(
+                                        fontStyle: FontStyle.normal,
+                                        color: Colors.green,
+                                        fontSize: 20))),
+                              ],
+                            ),
+                          )
+                          .toList()
+                    ],
+                  ),
+                ),
               ),
             ),
           ),

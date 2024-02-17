@@ -55,15 +55,23 @@ class _MyHomePageState extends State<MyHomePage> {
                 .map((e) => Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => RouteSchedule(e.id)),
-                            );
-                          },
-                          child: Text(e.displayText),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => RouteSchedule(e.id)),
+                              );
+                            },
+                            child: Text(e.displayText,
+                            style:const TextStyle(
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 20,
+                                  color: Colors.green),
+                            ),
+                          ),
                         ),
                         const SizedBox(
                           height: 20,

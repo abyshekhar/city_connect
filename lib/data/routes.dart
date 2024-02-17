@@ -3,7 +3,7 @@ import 'package:city_connect/models/routes.dart';
 const routes = [
   Routes(
       1,
-      'Epic -> Hub',
+      'Epic ~> Hub',
       'epic',
       'hub',
       [
@@ -118,7 +118,7 @@ const routes = [
       false),
   Routes(
       2,
-      'Hub -> Epic',
+      'Hub ~> Epic',
       'hub',
       'epic',
       [
@@ -233,7 +233,7 @@ const routes = [
       false),
   Routes(
       3,
-      'Hub -> Xperia',
+      'Hub ~> Xperia',
       'hub',
       'xperia',
       [
@@ -306,7 +306,7 @@ const routes = [
       false),
   Routes(
       4,
-      'Xperia -> Hub',
+      'Xperia ~> Hub',
       'xperia',
       'hub',
       [
@@ -379,7 +379,7 @@ const routes = [
       false),
   Routes(
       5,
-      'Hub -> Dombivli',
+      'Hub ~> Dombivli',
       'hub',
       'dombivli',
       [
@@ -458,7 +458,7 @@ const routes = [
       true),
   Routes(
       6,
-      'Dombivli -> Hub',
+      'Dombivli ~> Hub',
       'dombivli',
       'hub',
       [
