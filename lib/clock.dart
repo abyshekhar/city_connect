@@ -23,7 +23,7 @@ class _ClockState extends State<Clock> {
 
   void _update() {
     setState(() {
-      formattedTime = DateFormat('hh:mm:ss').format(DateTime.now());
+      formattedTime = DateFormat.jms().format(DateTime.now());
       hour = DateFormat('a').format(DateTime.now());
     });
   }
