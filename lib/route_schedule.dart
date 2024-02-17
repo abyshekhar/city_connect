@@ -3,15 +3,27 @@ import 'package:flutter/material.dart';
 import 'package:city_connect/data/routes.dart';
 import 'package:intl/intl.dart';
 
+bool isHoliday = false;
+
 class RouteSchedule extends StatelessWidget {
-  RouteSchedule(this.id, {super.key});
+ const RouteSchedule(this.id, {super.key});
   final int id;
-  String beforeTimeString = "";
-  String afterTimeString =" ";
+
   @override
   Widget build(BuildContext context) {
-    final List<String> timeList =
-        routes.firstWhere((element) => element.id == id).timings;
+    String beforeTimeString = "";
+    String afterTimeString = " ";
+    // Get the current date
+    DateTime now = DateTime.now();
+
+    // Check if the current date is Sunday (weekday value of 7 in Dart)
+    if (now.weekday == DateTime.sunday) {
+      isHoliday = true;
+    }
+    final List<String> timeList = isHoliday &
+            routes.firstWhere((element) => element.id == id).isHolidayApplicable
+        ? routes.firstWhere((element) => element.id == id).holidayTimings
+        : routes.firstWhere((element) => element.id == id).timings;
     // Function to parse time string to DateTime
     DateTime parseTime(String time) {
       List<String> parts = time.split(":");
@@ -22,14 +34,11 @@ class RouteSchedule extends StatelessWidget {
     }
 
 // Function to format DateTime to time string
-    String formatTime(DateTime time) {
-      String hour = time.hour.toString().padLeft(2, '0');
-      String minute = time.minute.toString().padLeft(2, '0');
-      return "$hour:$minute";
-    }
-
-    // Get the current time
-    DateTime now = DateTime.now();
+    // String formatTime(DateTime time) {
+    //   String hour = time.hour.toString().padLeft(2, '0');
+    //   String minute = time.minute.toString().padLeft(2, '0');
+    //   return "$hour:$minute";
+    // }
 
     // Format the current time to hh:mm format
     String targetTime = DateFormat.Hm().format(now);
@@ -53,11 +62,9 @@ class RouteSchedule extends StatelessWidget {
       DateTime afterTime = dateTimeList[index];
 
       // Format the times back to hh:mm format
-      beforeTimeString =DateFormat.jm().format(beforeTime);
+      beforeTimeString = DateFormat.jm().format(beforeTime);
       afterTimeString = DateFormat.jm().format(afterTime);
-
-    } else {
-    }
+    } else {}
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -68,7 +75,6 @@ class RouteSchedule extends StatelessWidget {
           const Clock(),
           Text("Last Bus was scheduled at $beforeTimeString"),
           Text("Next Bus is scheduled at $afterTimeString"),
-
           Expanded(
             child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
@@ -91,7 +97,7 @@ class RouteSchedule extends StatelessWidget {
                       .map(
                         (e) => DataRow(
                           cells: <DataCell>[
-                            DataCell(Text(e)),
+                            DataCell(Text(DateFormat.jm().format(parseTime(e)).toString())),
                           ],
                         ),
                       )
