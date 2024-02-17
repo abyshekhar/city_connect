@@ -80,7 +80,7 @@ class RouteSchedule extends StatelessWidget {
                 style: TextStyle(
                   color: Colors.green[900],
                   fontWeight: FontWeight.bold,
-                  fontSize: 40,
+                  fontSize: 30,
                 )),
           ),
           const Clock(),
@@ -91,13 +91,13 @@ class RouteSchedule extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.grey,
                     fontWeight: FontWeight.normal,
-                    fontSize: 30,
+                    fontSize: 20,
                   )),
               Text(afterTimeString,
                   style: const TextStyle(
                     color: Colors.green,
                     fontWeight: FontWeight.bold,
-                    fontSize: 30,
+                    fontSize: 20,
                   ))
             ],
           ),

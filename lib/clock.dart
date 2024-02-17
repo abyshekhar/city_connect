@@ -42,13 +42,13 @@ class _ClockState extends State<Clock> {
                   style: TextStyle(
                     color: Colors.grey,
                     fontWeight: FontWeight.normal,
-                    fontSize: 30,
+                    fontSize: 20,
                   )),
               Text(formattedTime,
                   style: const TextStyle(
                     color: Colors.green,
                     fontWeight: FontWeight.bold,
-                    fontSize: 30,
+                    fontSize: 20,
                   )),
             ],
           ),
