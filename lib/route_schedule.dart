@@ -79,8 +79,8 @@ class RouteSchedule extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(displayText,
-                style: TextStyle(
-                  color: Colors.green[900],
+                style: const TextStyle(
+                  color: Color.fromARGB(255, 2, 95, 23),
                   fontWeight: FontWeight.bold,
                   fontSize: 30,
                 )),
