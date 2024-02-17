@@ -1,6 +1,6 @@
 # city_connect
 
-A new Flutter project.
+Navigating your City.
 
 ## Getting Started
 
