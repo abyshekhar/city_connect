@@ -156,7 +156,7 @@ class RouteSchedule extends StatelessWidget {
                     DataColumn(
                       label: Expanded(
                         child: Text(
-                          'Complete Schedule',
+                          'Complete\nSchedule',
                           style: TextStyle(
                               fontStyle: FontStyle.italic,
                               fontWeight: FontWeight.bold,
@@ -167,9 +167,7 @@ class RouteSchedule extends StatelessWidget {
                     ),
                   ],
                   rows: <DataRow>[
-                    ...routes
-                        .firstWhere((element) => element.id == id)
-                        .timings
+                    ...timeList
                         .map(
                           (e) => DataRow(
                             cells: <DataCell>[
