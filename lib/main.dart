@@ -49,44 +49,49 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-         const Padding(
-           padding: EdgeInsets.all(20.0),
-           child: Text('Select Route',
-            style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 30,
-                  color: Color.fromARGB(255, 2, 95, 23)),
-            ),
-         ),
-          ...routes.map((e) => Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => RouteSchedule(e.id)),
-                        );
-                      },
-                      child: Text(
-                        e.displayText,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.normal,
-                            fontSize: 20,
-                            color: Colors.green),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+           const Padding(
+             padding: EdgeInsets.all(20.0),
+             child: Text('Select Route',
+              style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30,
+                    color: Color.fromARGB(255, 2, 95, 23)),
+              ),
+           ),
+            ...routes.map((e) => SingleChildScrollView(
+              child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => RouteSchedule(e.id)),
+                            );
+                          },
+                          child: Text(
+                            e.displayText,
+                            style: const TextStyle(
+                                fontWeight: FontWeight.normal,
+                                fontSize: 20,
+                                color: Colors.green),
+                          ),
+                        ),
                       ),
-                    ),
+                      const SizedBox(
+                        height: 20,
+                      )
+                    ],
                   ),
-                  const SizedBox(
-                    height: 20,
-                  )
-                ],
-              ))
-        ]),
+            ))
+          ]),
+        ),
       ),
     );
   }

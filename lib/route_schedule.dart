@@ -90,39 +90,31 @@ class RouteSchedule extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              const Text("First Bus : ",
+              const Text("First Bus:",
                   style: TextStyle(
                     color: Colors.grey,
                     fontWeight: FontWeight.normal,
-                    fontSize: 20,
+                    fontSize: 15,
                   )),
-              Text(first,
+              Text("$first ",
                   style: const TextStyle(
                     color: Colors.brown,
                     fontWeight: FontWeight.bold,
-                    fontSize: 20,
+                    fontSize: 15,
+                  )),
+              const Text("Last Bus:",
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontWeight: FontWeight.normal,
+                    fontSize: 15,
+                  )),
+              Text(last,
+                  style: const TextStyle(
+                    color: Colors.redAccent,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
                   ))
             ]),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text("Last Bus : ",
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontWeight: FontWeight.normal,
-                      fontSize: 20,
-                    )),
-                Text(last,
-                    style: const TextStyle(
-                      color: Colors.redAccent,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    ))
-              ],
-            ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -151,16 +143,16 @@ class RouteSchedule extends StatelessWidget {
               child: SingleChildScrollView(
                 scrollDirection: Axis.vertical,
                 child: DataTable(
-                  horizontalMargin: 10,
+                  horizontalMargin: 5,
                   columns: const <DataColumn>[
                     DataColumn(
                       label: Expanded(
                         child: Text(
-                          'Complete\nSchedule',
+                          'Complete Schedule',
                           style: TextStyle(
                               fontStyle: FontStyle.italic,
                               fontWeight: FontWeight.bold,
-                              fontSize: 20,
+                              fontSize: 16,
                               color: Colors.green),
                         ),
                       ),
