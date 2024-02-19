@@ -10,7 +10,7 @@ class Clock extends StatefulWidget {
 }
 
 class _ClockState extends State<Clock> {
-  String formattedTime = DateFormat('kk:mm').format(DateTime.now());
+  String formattedTime = DateFormat('hh:mm').format(DateTime.now());
   String hour = DateFormat('a').format(DateTime.now());
   late Timer _timer;
 
@@ -23,7 +23,7 @@ class _ClockState extends State<Clock> {
 
   void _update() {
     setState(() {
-      formattedTime = DateFormat.jms().format(DateTime.now());
+      formattedTime = DateFormat('hh:mm:ss a').format(DateTime.now());
       hour = DateFormat('a').format(DateTime.now());
     });
   }

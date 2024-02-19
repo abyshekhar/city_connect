@@ -66,7 +66,7 @@ class RouteSchedule extends StatelessWidget {
 
       // Format the times back to hh:mm format
       // beforeTimeString = DateFormat.jm().format(beforeTime);
-      afterTimeString = DateFormat.jm().format(afterTime);
+      afterTimeString = DateFormat('hh:mm a').format(afterTime);
     } else {
       afterTimeString = "$first(Morning)";
     }
@@ -164,7 +164,7 @@ class RouteSchedule extends StatelessWidget {
                           (e) => DataRow(
                             cells: <DataCell>[
                               DataCell(Text(
-                                  DateFormat.jm()
+                                  DateFormat('hh:mm a')
                                       .format(parseTime(e))
                                       .toString(),
                                   style: const TextStyle(
